@@ -8,28 +8,30 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ejercicio.peliculas.dao.IGeneroRepository;
 import com.ejercicio.peliculas.entities.Genero;
+import com.ejercicio.peliculas.services.IGeneroService;
 
 @RestController
 public class GeneroController {
-    
-    private IGeneroRepository generoRepository;
 
-    public GeneroController(IGeneroRepository generoRepository) {
-        this.generoRepository = generoRepository;
+    private IGeneroService service;
+
+    public GeneroController(IGeneroService service) {
+        this.service = service;
     }
 
     @PostMapping("genero")
-    public Long guardar(@RequestParam String nombre){
+    public Long guardar(@RequestParam String nombre) {
         Genero genero = new Genero();
         genero.setNombre(nombre);
 
-        generoRepository.save(genero);
+        service.save(genero);
+
         return genero.getId();
     }
 
     @GetMapping("genero/{id}")
-    public String buscarporId(@PathVariable(name = "id") Long id){
-        return generoRepository.findById(id).getNombre();
+    public String buscarporId(@PathVariable(name = "id") Long id) {
+        return service.findById(id).getNombre();
     }
-    
+
 }
