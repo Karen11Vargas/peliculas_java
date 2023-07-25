@@ -2,9 +2,7 @@ package com.ejercicio.peliculas.entities;
 
 import java.io.Serializable;
 
-import org.springframework.core.serializer.Serializer;
 
-import com.fasterxml.jackson.core.SerializableString;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
