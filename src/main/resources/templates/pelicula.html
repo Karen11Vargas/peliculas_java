@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:insert="layouts/head">
-</head>
+<head th:insert="layouts/head :: head"></head>
 <body>
-    <header th:insert="layouts/header"></header>
+    <header th:insert="layouts/header :: header"></header>
     <div class="container">
         <form tg:action="@{/pelicula}" th:object="${pelicula}" method="post" class="col-md-8 " >
             <h2 th:text="${titulo}" class="py-4"></h2>
@@ -17,13 +16,24 @@
                 <input type="date" class="form-control" id="fecha_estreno" th:field="*{fechaEstreno}">
             </div>
             <div class="mb-3">
-                <label for="fecha_estreno" class="form-label">Genero</label>
+                <label for="genero" class="form-label">Genero</label>
                 <select class="form-select" th:field="*{genero}">
-                    <option th:each="genero : ${generos}" th:text="${genero.nombre}" th:value="${genero.id}"></option>
+                    <option th:each="item : ${generos}" th:text="${item.nombre}" th:value="${item.id}"></option>
                 </select>
             </div>
-            
+            <div class="mb-3">
+                <label for="protagonistas" class="form-label">Actor</label>
+                <select class="form-select" th:field="*{protagonistas}" onchange="actorSelected(this)">
+                    <option th:text="'Seleccione actor'" th:value="0"></option>
+                    <option th:each="actor : ${actores}" th:text="${actor.nombre}" th:value="${actor.id}" th:data-url="${actor.urlImagen}"></option>
+                </select>
+            </div>
+            <input id="ids" name="ids" type="hidden">
+            <div id="protagonistas_container" class="row">
+
+            </div>
             <button type="submit" class="btn btn-primary float-and">Guardar</button>
         </form>
     </div>
+    <footer th:insert="layouts/footer :: footer"></footer>
 </html>

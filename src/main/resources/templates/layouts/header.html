@@ -1,4 +1,4 @@
-<header>
+<header th:fragment="header">
     <nav class="navbar navbar-expand-lg bg-body-tertiary"  data-bs-theme="dark">
         <div class="container-fluid">
             <i class="fa-solid fa-film fa-lg" style="color: #ffffff;">
@@ -9,10 +9,13 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Java</a>
+                <a class="nav-link active" aria-current="page" href="/home">Catalogo</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="#">Spring</a>
+                <a class="nav-link active" href="/pelicula">Nueva Pelicula</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="/listado">Listado</a>
               </li>
             </ul>
           </div>

@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:insert="layouts/head">
+<head th:insert="layouts/head :: head">
 </head>
 <body>
-    <header th:insert="layouts/header"></header>
+    <header th:insert="layouts/header :: header"></header>
     <div class="container">
         <h3>Hola Soy el inicio</h3>
     </div>
+    <footer th:insert="layouts/footer :: footer"></footer>
 </html>

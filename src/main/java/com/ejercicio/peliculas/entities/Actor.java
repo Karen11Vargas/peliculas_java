@@ -21,7 +21,7 @@ public class Actor implements Serializable {
     private String nombre;
 
     @Column(name = "url_imagen")
-    private String ulrImagen;
+    private String urlImagen;
 
     // Getter and Setter
     public Long getId() {
@@ -40,12 +40,12 @@ public class Actor implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getUlrImagen() {
-        return ulrImagen;
+    public String getUrlImagen() {
+        return urlImagen;
     }
 
-    public void setUlrImagen(String ulrImagen) {
-        this.ulrImagen = ulrImagen;
+    public void setUrlImagen(String urlImagen) {
+        this.urlImagen = urlImagen;
     }
 
 }

@@ -11,6 +11,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
@@ -34,7 +35,9 @@ public class Peliculas implements Serializable {
 
     @OneToOne
     private Genero genero;
-    private List<String> protagonistas;
+
+    @ManyToMany
+    private List<Actor> protagonistas;
 
     // Getter and Setter
     public Long getId() {
@@ -69,11 +72,11 @@ public class Peliculas implements Serializable {
         this.genero = genero;
     }
 
-    public List<String> getProtagonistas() {
+    public List<Actor> getProtagonistas() {
         return protagonistas;
     }
 
-    public void setProtagonistas(List<String> protagonistas) {
+    public void setProtagonistas(List<Actor> protagonistas) {
         this.protagonistas = protagonistas;
     }
 
