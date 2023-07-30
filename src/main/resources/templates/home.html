@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:insert="layouts/head :: head">
-</head>
+<!-- Verifica que la URL sea correcta -->
+
 <body>
     <header th:insert="layouts/header :: header"></header>
     <div class="container">
         <h3>Hola Soy el inicio</h3>
     </div>
+    <script th:utext="${scriptCrear}"></script>
+
     <footer th:insert="layouts/footer :: footer"></footer>
 </html>

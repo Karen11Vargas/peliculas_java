@@ -2,7 +2,7 @@
     let index = select.selectedIndex;
     let option = select.options[index];
     let id = option.value;
-    let nombre = option.value;
+    let nombre = option.text;
     let urlImagen = option.dataset.url;
     
     option.disabled ="disabled";
