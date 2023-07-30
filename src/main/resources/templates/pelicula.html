@@ -4,7 +4,7 @@
 <body>
     <header th:insert="layouts/header :: header"></header>
     <div class="container">
-        <form tg:action="@{/pelicula}" th:object="${pelicula}" method="post" class="col-md-8 " >
+        <form th:action="@{/pelicula}" th:object="${pelicula}" method="post" class="col-md-8 " >
             <h2 th:text="${titulo}" class="py-4"></h2>
 
             <div class="mb-3">
