@@ -59,6 +59,7 @@ public class PeliculasController {
             @ModelAttribute(name = "ids") String ids, Model model) {
 
         if (result.hasErrors()) {
+            model.addAttribute("titulo", "Nueva Pelicula");
             model.addAttribute("generos", generoService.findAll());
             model.addAttribute("actores", actorService.findAll());
             return "pelicula";
@@ -71,7 +72,6 @@ public class PeliculasController {
         service.save(peliculas);
 
         //Sweet Alert
-        // Mostrar SweetAlert
         String mensaje = "La película se ha agregado exitosamente";
         String script = "Swal.fire({" +
                 "    title: '¡Éxito!', " +
