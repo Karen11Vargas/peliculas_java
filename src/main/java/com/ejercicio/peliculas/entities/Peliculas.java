@@ -12,7 +12,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -37,7 +37,7 @@ public class Peliculas implements Serializable {
     @NotNull(message = "Ingrese una Fecha")
     private Date fechaEstreno;
 
-    @OneToOne
+    @ManyToOne
     @NotNull(message = "Seleccione un genero")
     private Genero genero;
 
