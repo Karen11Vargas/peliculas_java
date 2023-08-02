@@ -5,7 +5,7 @@
 <body>
     <header th:insert="layouts/header :: header"></header>
     <div class="container">
-        <form th:action="@{/pelicula}" th:object="${pelicula}" method="post" class="col-md-8 offset-md-2" >
+        <form th:action="@{/pelicula}" th:object="${pelicula}" method="post" class="col-md-8 offset-md-2" enctype="multipart/form-data">
             <h2 th:text="${titulo}" class="py-4"></h2>
             <div class="mb-3">
               <label for="Nombre" class="form-label">Nombre Pelicula</label>
@@ -33,6 +33,11 @@
                     <option th:each="actor : ${actores}" th:text="${actor.nombre}" th:value="${actor.id}" th:data-url="${actor.urlImagen}"></option>
                 </select>
             </div>
+            <div class="mb-3">
+                <label for="imagen" class="form-label">Imagen</label>
+                <input type="file" id="imagen" class="form-control" name="imagen" onchange="previsualizarImagen()">
+                <div id="vista_previa" class="d-none"></div>
+            </div>
             
             <input id="ids" name="ids" type="hidden">
             <div id="protagonistas_container" class="row">
@@ -43,5 +48,7 @@
         <script th:utext="${scriptCrear}"></script>
 
     </div>
-    <footer th:insert="layouts/footer :: footer"></footer>
+    <footer th:insert="layouts/footer :: footer">
+       
+    </footer>
 </html>

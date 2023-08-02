@@ -19,3 +19,11 @@
 .catalogo-actor-texto{
     height: 32px;
 }
+
+#vista_previa{
+    width: 200px;
+    height: 115px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

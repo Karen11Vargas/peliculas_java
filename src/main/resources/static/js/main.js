@@ -45,4 +45,15 @@ function eliminarActor(btn) {
 }
 
 
+function previsualizarImagen(){
+    let reader = new FileReader();
 
+    reader.readAsDataURL(document.getElementById("imagen").files[0]);
+
+    // Rest of the function code
+    reader.onload = function(e){
+        let vista = document.getElementById("vista_previa");
+        vista.classList.remove("d-none");
+        vista.style.backgroundImage = 'url("' + e.target.result + '")';
+    }
+}
