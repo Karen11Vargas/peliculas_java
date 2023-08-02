@@ -82,12 +82,12 @@ public class PeliculasController {
                 
         model.addAttribute("scriptCrear", script);
 
-        return "home";
+        return "pelicula";
     }
 
-    @GetMapping({ "/", "/home", "/index" })
+     @GetMapping({ "/", "/home", "/index" })
     public String home(Model model) {
-       
+        model.addAttribute("peliculas", service.findAll());
         return "home";
     }
 

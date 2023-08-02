@@ -6,9 +6,26 @@
 <body>
     <header th:insert="layouts/header :: header"></header>
     <div class="container">
-        <h3>Hola Soy el inicio</h3>
+        <div class="container">
+            <div class="row row-cols-1 row-cols-md-6 g-4 m-2">
+                <div class="col" th:each="pelicula : ${peliculas}">
+                  <div class="card">
+                    <img src="https://www.divinacocina.es/wp-content/uploads/2015/02/arroz-con-pollo-rapido-facil.jpg" class="card-img-top" alt="foto">
+                    <div class="card-body">
+                      <h5 class="card-title" th:text="${pelicula.nombre}"></h5>
+                      <p class="card-text" th:text="${pelicula.genero.nombre}"></p>
+                      <div class="catalogo-actor-container" th:each="protagonista : ${pelicula.protagonistas}">
+                        <img class="catalogo-actor-imagen" th:src="${protagonista.urlImagen}">
+                        <div class="catalogo-actor-texto" th:text="${protagonista.nombre}">
+    
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <script th:utext="${scriptCrear}"></script>
 
     <footer th:insert="layouts/footer :: footer"></footer>
 </html>
