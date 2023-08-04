@@ -46,8 +46,6 @@ public class Peliculas implements Serializable {
 
     private String imagen;
 
-
-
     // Getter and Setter
     public Long getId() {
         return id;

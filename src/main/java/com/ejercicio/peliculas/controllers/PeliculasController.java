@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.springframework.objenesis.strategy.StdInstantiatorStrategy;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -54,8 +53,20 @@ public class PeliculasController {
 
     @GetMapping("/pelicula/{id}")
     public String editar(@PathVariable(name = "id") Long id, Model model) {
-        Peliculas peliculas = new Peliculas();
+        Peliculas peliculas = service.findById(id);
+
+        String ids = "";
+
+        for (Actor actor : peliculas.getProtagonistas()) {
+            if ("".equals(ids)) {
+                ids = actor.getId().toString();
+            } else {
+                ids = ids + "," + actor.getId().toString();
+            }
+        }
+
         model.addAttribute("pelicula", peliculas);
+        model.addAttribute("ids", ids);
         model.addAttribute("generos", generoService.findAll());
         model.addAttribute("actores", actorService.findAll());
         model.addAttribute("titulo", "Editar Pelicula");
@@ -76,39 +87,44 @@ public class PeliculasController {
 
         // Si se recibe imagen
         if (!imagen.isEmpty()) {
-            System.out.println("Imagen no está vacía");
             String archivo = peliculas.getNombre() + getExtension(imagen.getOriginalFilename());
-            System.out.println("Nombre de archivo: " + archivo);
             peliculas.setImagen(archivo);
             try {
                 archivoService.guardar(archivo, imagen.getInputStream());
-                System.out.println("Imagen guardada exitosamente");
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } else {
-            System.out.println("Imagen está vacía");
             peliculas.setImagen("default.jpg");
         }
 
-        // Lista Actores
-        List<Long> idsActores = Arrays.stream(ids.split(",")).map(Long::parseLong).collect(Collectors.toList());
-        List<Actor> protagonistas = actorService.findAllById(idsActores);
-        peliculas.setProtagonistas(protagonistas);
+        if (ids != null && !"".equals(ids)) {
+            // Lista Actores
+            List<Long> idsActores = Arrays.stream(ids.split(",")).map(Long::parseLong).collect(Collectors.toList());
+            List<Actor> protagonistas = actorService.findAllById(idsActores);
+            peliculas.setProtagonistas(protagonistas);
+        }
 
-        // Guardar Pelicula
-        service.save(peliculas);
+        String mensaje = "";
+        if (peliculas.getId() == null) {
+            mensaje = "La pelicula se agrego correctamente";
+        } else {
+            mensaje = "La pelicula se actualizo correctamente";
+        }
 
-        // Sweet Alert
-        String mensaje = "La película se ha agregado exitosamente";
         String script = "Swal.fire({" +
                 "    title: '¡Éxito!', " +
                 "    text: '" + mensaje + "', " +
                 "    icon: 'success', " +
                 "    confirmButtonText: 'Aceptar'" +
+                "}).then(function() {" +
+                "    window.location.href = '/home';" +
                 "});";
 
         model.addAttribute("scriptCrear", script);
+
+        // Guardar Pelicula
+        service.save(peliculas);
 
         return "pelicula";
     }
@@ -123,4 +139,10 @@ public class PeliculasController {
         return "home";
     }
 
+    @GetMapping({ "/listado" })
+    public String listado(Model model) {
+        model.addAttribute("titulo", "Listado de Peliculas");
+        model.addAttribute("peliculas", service.findAll());
+        return "listado";
+    }
 }
