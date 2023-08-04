@@ -19,11 +19,16 @@
                 <td th:text ="${pelicula.genero.nombre}"></td>
                 <td>
                     <a th:href="@{'/pelicula/' + ${pelicula.id}}">
-                        <button type="button" class="btn btn-primary">
+                        <button type="button" class="btn btn-success">
                             <i class="fas fa-edit"></i> Editar
                         </button>
                     </a>
-                    
+
+                    <a th:href="@{'/pelicula/' + ${pelicula.id}}">
+                        <button type="button" class="btn btn-danger">
+                            <i class="fas fa-edit"></i> Borrar
+                        </button>
+                    </a>
                 </td>
               </tr>
             </tbody>
