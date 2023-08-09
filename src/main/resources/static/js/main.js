@@ -1,4 +1,18 @@
- function actorSelected(select){
+function confirmarDelte(button){
+    var id = button.getAttribute("data-id");
+
+    Swal.fire({
+        icon: 'warning',
+        text: 'Seguro que quieres eliminar este registro '+ id +'?' ,
+        showCancelButton: true,
+        confirmButtonText: 'Confirmar',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location = '/pelicula/' +id + '/delete';
+        }
+      })
+  }   
+function actorSelected(select){
     let index = select.selectedIndex;
     let option = select.options[index];
     let id = option.value;

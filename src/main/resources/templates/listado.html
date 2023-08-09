@@ -5,11 +5,12 @@
 <body>
     <header th:insert="layouts/header :: header"></header>
     <div class="container col-6">
-        <table class="table table-hover m-2">
+        <table id="listado" class="table table-hover m-2">
             <thead class="table-success">
               <tr>
                 <th scope="col">Nombre</th>
                 <th scope="col">Genero</th>
+                <th scope="col">Imagen</th>
                 <th scope="col">Accion</th>
               </tr>
             </thead>
@@ -17,16 +18,17 @@
               <tr th:each = "pelicula  : ${peliculas}">
                 <td th:text ="${pelicula.nombre}"></td>
                 <td th:text ="${pelicula.genero.nombre}"></td>
+                <td><img style="width: 40px;" th:src="@{${'/archivo?n=' + (pelicula.imagen == null ? 'default.png' : pelicula.imagen)}}" /></td>
                 <td>
                     <a th:href="@{'/pelicula/' + ${pelicula.id}}">
                         <button type="button" class="btn btn-success">
-                            <i class="fas fa-edit"></i> Editar
+                            <i class="fa-regular fa-pen-to-square"></i> Editar
                         </button>
                     </a>
 
-                    <a th:href="@{'/pelicula/' + ${pelicula.id + '/delete'}}">
+                    <a onclick="confirmarDelte(this)" th:data-id="${pelicula.id}">
                         <button type="button" class="btn btn-danger">
-                            <i class="fas fa-edit"></i> Borrar
+                            <i class="fas fa-trash-can"></i> Borrar
                         </button>
                     </a>
                 </td>
@@ -35,6 +37,6 @@
           </table>
           <script th:utext="${scriptEdit}"></script>
     </div>
-
     <footer th:insert="layouts/footer :: footer"></footer>
+    
 </html>

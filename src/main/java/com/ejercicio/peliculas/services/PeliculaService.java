@@ -3,6 +3,8 @@ package com.ejercicio.peliculas.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.ejercicio.peliculas.dao.IPeliculaRepository;
@@ -12,7 +14,7 @@ import com.ejercicio.peliculas.entities.Peliculas;
 public class PeliculaService implements IPeliculaService {
 
     @Autowired
-    private IPeliculaRepository peliculaRepository;
+    public IPeliculaRepository peliculaRepository;
 
     @Override
     public void save(Peliculas peliculas) {
@@ -33,5 +35,10 @@ public class PeliculaService implements IPeliculaService {
     public void delete(Long id) {
         peliculaRepository.deleteById(id);
     }
-    
+
+    @Override
+    public Page<Peliculas> findAll(PageRequest pr) {
+        return peliculaRepository.findAll(pr);
+    }
+
 }
