@@ -4,9 +4,9 @@
 
 <body>
     <header th:insert="layouts/header :: header"></header>
-    <div class="container">
-        <table class="table table-hover">
-            <thead>
+    <div class="container col-6">
+        <table class="table table-hover m-2">
+            <thead class="table-success">
               <tr>
                 <th scope="col">Nombre</th>
                 <th scope="col">Genero</th>
@@ -24,7 +24,7 @@
                         </button>
                     </a>
 
-                    <a th:href="@{'/pelicula/' + ${pelicula.id}}">
+                    <a th:href="@{'/pelicula/' + ${pelicula.id + '/delete'}}">
                         <button type="button" class="btn btn-danger">
                             <i class="fas fa-edit"></i> Borrar
                         </button>
@@ -33,6 +33,7 @@
               </tr>
             </tbody>
           </table>
+          <script th:utext="${scriptEdit}"></script>
     </div>
 
     <footer th:insert="layouts/footer :: footer"></footer>

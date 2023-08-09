@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ejercicio.peliculas.entities.Actor;
 import com.ejercicio.peliculas.entities.Peliculas;
@@ -143,6 +144,28 @@ public class PeliculasController {
     public String listado(Model model) {
         model.addAttribute("titulo", "Listado de Peliculas");
         model.addAttribute("peliculas", service.findAll());
+
+        return "listado";
+    }
+
+    @GetMapping("/pelicula/{id}/delete")
+    public String eliminar(@PathVariable(name = "id") Long id, Model model, RedirectAttributes redirect) {
+
+        String mensaje = "Se ha eliminado la pelicula #" + id;
+
+        String script = "Swal.fire({" +
+                "    title: '¡Éxito!', " +
+                "    text: '" + mensaje + "', " +
+                "    icon: 'success', " +
+                "    confirmButtonText: 'Aceptar'" +
+                "}).then(function() {" +
+                "    window.location.href = '/listado';" +
+                "});";
+
+        model.addAttribute("scriptEdit", script);
+
+        service.delete(id);
+
         return "listado";
     }
 }

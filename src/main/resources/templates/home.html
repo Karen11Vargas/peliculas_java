@@ -6,10 +6,10 @@
     <header th:insert="layouts/header :: header"></header>
     <div class="container">
         <div class="container">
-            <div class="row row-cols-1 row-cols-md-4 g-4 m-2">
+            <div class="row row-cols-1 row-cols-md-6 g-4 m-2">
                 <div class="col" th:each="pelicula : ${peliculas}">
                   <div class="card">
-                    <img th:src="@{${'/archivo?n=' + (pelicula.imagen == null ? 'default.jpg' : pelicula.imagen)}}" />
+                    <img th:src="@{${'/archivo?n=' + (pelicula.imagen == null ? 'default.png' : pelicula.imagen)}}" />
                     <div class="card-body">
                       <h5 class="card-title" th:text="${pelicula.nombre}"></h5>
                       <p class="card-text" th:text="${pelicula.genero.nombre}"></p>
