@@ -111,9 +111,9 @@ public class PeliculasController {
 
         String mensaje = "";
         if (peliculas.getId() == null) {
-            mensaje = "La pelicula se agrego correctamente";
+            mensaje = "La película se agregó correctamente";
         } else {
-            mensaje = "La pelicula se actualizo correctamente";
+            mensaje = "La película se actualizó correctamente";
         }
 
         String script = "Swal.fire({" +
@@ -152,13 +152,13 @@ public class PeliculasController {
         }
 
         model.addAttribute("actual", pagina + 1);
-        model.addAttribute("titulo", "Catalogo de peliculas");
+        model.addAttribute("titulo", "Catálogo de películas");
         return "home";
     }
 
     @GetMapping({ "/listado" })
     public String listado(Model model) {
-        model.addAttribute("titulo", "Listado de Peliculas");
+        model.addAttribute("titulo", "Listado de Películas");
         model.addAttribute("peliculas", service.findAll());
 
         return "listado";
@@ -167,7 +167,7 @@ public class PeliculasController {
     @GetMapping("/pelicula/{id}/delete")
     public String eliminar(@PathVariable(name = "id") Long id, Model model, RedirectAttributes redirect) {
 
-        String mensaje = "Se ha eliminado la pelicula #" + id;
+        String mensaje = "Se ha eliminado la película #" + id;
 
         String script = "Swal.fire({" +
                 "    title: '¡Éxito!', " +

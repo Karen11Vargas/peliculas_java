@@ -17,6 +17,5 @@ public class ArchivoController {
     @GetMapping("/archivo")
     public ResponseEntity<Resource> get(@RequestParam("n") String archivo){
         return service.get(archivo);
-
     }
 }

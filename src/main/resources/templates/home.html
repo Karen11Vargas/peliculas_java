@@ -25,15 +25,15 @@
                 </div>
             </div>
         </div>
-        <nav aria-label="Page navigation example">
+        <nav>
           <ul class="pagination justify-content-center">
             <li class="page-item" th:each= "pagina : ${paginas}" th:classappend="${pagina == actual ? 'active' :''}">
               <a class="page-link" th:href="@{'/home?pagina=' + ${pagina -1}}" th:text="${pagina}" aria-label="Previous">
-              
               </a>
             </li>
           </ul>
         </nav>
     </div>
     <footer th:insert="layouts/footer :: footer"></footer>
+</body>
 </html>
