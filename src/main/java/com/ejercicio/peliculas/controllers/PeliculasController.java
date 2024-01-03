@@ -99,7 +99,7 @@ public class PeliculasController {
                 e.printStackTrace();
             }
         } else {
-            peliculas.setImagen("default.png");
+            peliculas.setImagen("default.jpg");
         }
 
         if (ids != null && !"".equals(ids)) {
