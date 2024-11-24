@@ -2,7 +2,6 @@ HELP.md
 target/
 !
 .mvn/wrapper/maven-wrapper.jar
-.src/main/resources/application.properties
 
 ### STS ###
 .apt_generated
@@ -30,3 +29,12 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Ignorar todos los archivos en la carpeta 'carpeta'
+archivos/*
+
+# Permitir 'especial.txt'
+!archivos/default.jpg
+
+# Permitir 'especial.txt'
+!archivos/img/
